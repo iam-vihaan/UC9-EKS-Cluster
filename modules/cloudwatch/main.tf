@@ -13,13 +13,13 @@ resource "aws_cloudwatch_dashboard" "main" {
 
         properties = {
           metrics = [
-            ["AWS/ECS", "CPUUtilization", "ServiceName", "${var.project_name}-${var.environment}-patient-service", "ClusterName", var.ecs_cluster_name],
-            [".", ".", "ServiceName", "${var.project_name}-${var.environment}-appointment-service", "ClusterName", var.ecs_cluster_name]
+            ["AWS/EKS", "CPUUtilization", "ServiceName", "${var.project_name}-${var.environment}-patient-service", "ClusterName", var.EKS_cluster_name],
+            [".", ".", "ServiceName", "${var.project_name}-${var.environment}-appointment-service", "ClusterName", var.EKS_cluster_name]
           ]
           view    = "timeSeries"
           stacked = false
           region  = data.aws_region.current.name
-          title   = "ECS Service CPU Utilization"
+          title   = "EKS Service CPU Utilization"
           period  = 300
         }
       },
@@ -32,13 +32,13 @@ resource "aws_cloudwatch_dashboard" "main" {
 
         properties = {
           metrics = [
-            ["AWS/ECS", "MemoryUtilization", "ServiceName", "${var.project_name}-${var.environment}-patient-service", "ClusterName", var.ecs_cluster_name],
-            [".", ".", "ServiceName", "${var.project_name}-${var.environment}-appointment-service", "ClusterName", var.ecs_cluster_name]
+            ["AWS/EKS", "MemoryUtilization", "ServiceName", "${var.project_name}-${var.environment}-patient-service", "ClusterName", var.EKS_cluster_name],
+            [".", ".", "ServiceName", "${var.project_name}-${var.environment}-appointment-service", "ClusterName", var.EKS_cluster_name]
           ]
           view    = "timeSeries"
           stacked = false
           region  = data.aws_region.current.name
-          title   = "ECS Service Memory Utilization"
+          title   = "EKS Service Memory Utilization"
           period  = 300
         }
       },
@@ -65,15 +65,15 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
-  namespace           = "AWS/ECS"
+  namespace           = "AWS/EKS"
   period              = "300"
   statistic           = "Average"
   threshold           = "80"
-  alarm_description   = "This metric monitors ECS CPU utilization"
+  alarm_description   = "This metric monitors EKS CPU utilization"
   alarm_actions       = []
 
   dimensions = {
-    ClusterName = var.ecs_cluster_name
+    ClusterName = var.EKS_cluster_name
   }
 
   tags = {
