@@ -60,9 +60,10 @@ output "private_route_table_ids" {
   description = "IDs of the private route tables"
   value       = aws_route_table.private[*].id
 }
-*/
+
 
 output "availability_zones" {
   description = "List of availability zones"
   value       = var.availability_zones
 }
+*/
