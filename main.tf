@@ -23,7 +23,15 @@ module "ECR" {
 
 module "EKS" {
   source = "./modules/EKS"
-  
+  version = "19.0.0"
+  cluster_name    = "my-cluster"
+  cluster_version = "1.27"
+  subnet_ids      = var.subnet_ids
+  vpc_id          = var.vpc_id
+
+  node_group_role_arn       = var.node_group_role_arn
+  cluster_service_role_arn  = var.cluster_service_role_arn
+
   project_name             = var.project_name
   environment              = var.environment
   vpc_id                   = module.vpc.vpc_id
@@ -40,5 +48,5 @@ module "cloudwatch" {
   
   project_name    = var.project_name
   environment     = var.environment
-  ecs_cluster_name = module.ecs.cluster_name
+  eks_cluster_name = module.EKS_cluster_name
 }
