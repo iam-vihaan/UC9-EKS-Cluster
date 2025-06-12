@@ -83,3 +83,14 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+
+variable "node_group_role_arn" {
+  description = "IAM role ARN for the EKS node group"
+  type        = string
+}
+
+variable "cluster_service_role_arn" {
+  description = "IAM role ARN for the EKS cluster service"
+  type        = string
+}
