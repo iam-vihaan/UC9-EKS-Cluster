@@ -1,5 +1,5 @@
-module "vpc" {
-  source = "./modules/vpc"
+module "VPC" {
+  source = "./modules/VPC"
   
   project_name       = var.project_name
   environment        = var.environment
@@ -7,32 +7,22 @@ module "vpc" {
   availability_zones = var.availability_zones
 }
 
-module "iam" {
-  source = "./modules/iam"
+module "IAM" {
+  source = "./modules/IAM"
   
   project_name = var.project_name
   environment  = var.environment
 }
 
-module "ecr" {
-  source = "./modules/ecr"
+module "ECR" {
+  source = "./modules/ECR"
   
   project_name = var.project_name
   environment  = var.environment
 }
 
-module "alb" {
-  source = "./modules/alb"
-  
-  project_name    = var.project_name
-  environment     = var.environment
-  vpc_id          = module.vpc.vpc_id
-  public_subnets  = module.vpc.public_subnets
-  security_groups = [module.vpc.alb_security_group_id]
-}
-
-module "ecs" {
-  source = "./modules/ecs"
+module "EKS" {
+  source = "./modules/EKS"
   
   project_name             = var.project_name
   environment              = var.environment
