@@ -21,7 +21,7 @@ output "high_cpu_alarm_arn" {
 output "log_group_names" {
   description = "Names of CloudWatch log groups"
   value = [
-    "/ecs/${var.project_name}-${var.environment}/patient-service",
-    "/ecs/${var.project_name}-${var.environment}/appointment-service"
+    "/EKS/${var.project_name}-${var.environment}/patient-service",
+    "/EKS/${var.project_name}-${var.environment}/appointment-service"
   ]
 }
