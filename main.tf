@@ -23,7 +23,6 @@ module "ECR" {
 
 module "EKS" {
   source = "./modules/EKS"
-  version = "19.0.0"
   cluster_name    = "my-cluster"
   cluster_version = "1.27"
   subnet_ids      = var.subnet_ids
