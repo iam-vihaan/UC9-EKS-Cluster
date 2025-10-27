@@ -2,7 +2,7 @@
 
 ## If you're running Terraform ##
 
- **CodeBuild or ECS and have configured an IAM Task Role, Terraform can use the container's Task Role**. 
+ _**CodeBuild or ECS and have configured an IAM Task Role, Terraform can use the container's Task Role**_. 
 
 This support is based on the underlying AWS_CONTAINER_CREDENTIALS_RELATIVE_URI and AWS_CONTAINER_CREDENTIALS_FULL_URI environment variables being automatically set by those services or manually for advanced usage.
 
